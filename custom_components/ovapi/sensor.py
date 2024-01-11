@@ -16,7 +16,7 @@ from homeassistant.util import Throttle
 
 import homeassistant.helpers.config_validation as cv
 
-__version__ = '1.4.3'
+__version__ = '1.4.3.1'
 
 _LOGGER = logging.getLogger(__name__)
 _RESOURCE = 'v0.ovapi.nl'
@@ -177,7 +177,7 @@ class OvApiSensor(Entity):
         
         if self._delay == '':
             delay_display = 'On time'
-        else    
+        else:    
             delay_display = self._delay
             
         if self._sensor_number == 0:
@@ -244,7 +244,7 @@ class OvApiSensor(Entity):
                 elif expected_arrival_time < target_departure_time + timedelta(minutes=-1):
                     calculate_delay = target_departure_time - expected_arrival_time
                     delay = ' -' + str(round(calculate_delay.seconds / 60)) + 'm'
-                else
+                else:
                     delay = ''
                     
                 if expected_arrival_time < (datetime.now() + timedelta(minutes=1)):
@@ -290,7 +290,7 @@ class OvApiSensor(Entity):
 
                 self._departure = stops_list[self._sensor_number]["TargetDepartureTime"].strftime('%H:%M')
                 self._delay = str(stops_list[self._sensor_number]["Delay"])
-                self._minutes_to_go = stop_list[self._sensor_number]["Minutes_to_go"]
+                self._minutes_to_go = stops_list[self._sensor_number]["Minutes_to_go"]
 
                 if self._sensor_number == 0:
                     departure_list = []
